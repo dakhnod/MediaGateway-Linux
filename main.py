@@ -90,19 +90,6 @@ def send_fcm_message(recipient: str, data: dict):
         'data': data,
         'message_id': ''.join(random.choices("abcdefghijklmnopqrstuvwxyz", k=20))
     })
-    """
-    response = requests.post(
-        'https://fcm.googleapis.com/fcm/send',
-        json={
-            'to': recipient,
-            'data': data
-        },
-        headers={
-            'Content-Type': 'application/json',
-            'Authorization': f'key={FCM_TOKEN}'
-        }
-    )
-    """
 
 
 def main():
