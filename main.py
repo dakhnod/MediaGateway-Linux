@@ -88,6 +88,7 @@ def send_fcm_message(recipient: str, data: dict):
     fcm.send_message({
         'to': recipient,
         'data': data,
+        'priority': 'high',
         'message_id': ''.join(random.choices("abcdefghijklmnopqrstuvwxyz", k=20))
     })
 
