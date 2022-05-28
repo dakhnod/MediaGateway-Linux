@@ -10,8 +10,6 @@ import aioxmpp.xso
 import logging
 import threading
 
-logging.basicConfig(level=logging.DEBUG)
-
 ID = f"{os.environ['FCM_SENDER_ID']}@fcm.googleapis.com"
 PASSWORD = os.environ['FCM_TOKEN']
 
