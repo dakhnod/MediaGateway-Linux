@@ -44,6 +44,7 @@ def signal_handler(sender, object, iface, signal, params):
     meta_data = get_player_attribute(sender, 'Metadata')
 
     playback_data = {
+        'type': 'player_state',
         'playbackState': playback_state,
         'artist': meta_data['xesam:artist'][0],
         'title': meta_data['xesam:title']
@@ -109,6 +110,16 @@ def main():
 
     fcm.start_in_background(handle_app_message)
     loop = GLib.MainLoop()
+
+    PING_TIMEOUT = 10 * 60
+
+    def send_ping():
+        send_fcm_message(FCM_RECIPIENT, {
+            'type': 'ping'
+        })
+        GLib.timeout_add_seconds(PING_TIMEOUT, send_ping)
+
+    GLib.timeout_add_seconds(PING_TIMEOUT, send_ping)
     loop.run()
 
 
